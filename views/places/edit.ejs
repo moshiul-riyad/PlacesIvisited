@@ -1,16 +1,23 @@
 <% layout('layouts/boilerplate') %> 
-    <h1>Edit Place</h1>
-    <form action="/places/<%= place._id %>?_method=PUT" method="POST">
-        <div>
-            <label for="location">Location</label>
-            <input type="text" id="location" name="place[location]" value="<%= place.location %> ">
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <input type="text" id="description" name="place[description]" value="<%= place.description %> ">
-        </div>
-        <button>Update Place</button>
-        <p>
-            <a href="/places/<%= place._id %>">Back to Place</a>
-        </p>
-    </form>
+<div class="row">
+    <h1 class="text-center">Update Place</h1>
+    <div class="col-6 offset-3">
+        <form action="/places" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="place[location]" value="<%= place.location  %>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image URL</label>
+                <input class="form-control" type="text" id="image" name="place[image]" value="<%= place.image  %>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="place[description]"><%= place.description %></textarea>
+            </div>
+            <button class="btn btn-info mb-3">Update Place</button>
+        </form>
+        <a href="/places/<%= place._id%>" class="btn btn-warning">Cancel Editing</a>
+        
+    </div>
+</div>

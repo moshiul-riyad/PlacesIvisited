@@ -30,6 +30,7 @@ p.lead {
     font-weight: 700;
     margin-left: 1rem;
     border-bottom: 0.25rem solid transparent;
+    font-family: 'Calligraffitti', cursive;
 }
 
 .nav-link:hover {
@@ -45,6 +46,7 @@ p.lead {
 .btn-secondary {
     color: whitesmoke;
     font-size: x-large;
+    font-family: 'Calligraffitti', cursive;
     /* background-color: turquoise; */
 }
 

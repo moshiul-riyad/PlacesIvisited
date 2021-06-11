@@ -1,13 +1,22 @@
 <% layout('layouts/boilerplate') %> 
-    <form action="/places" method="POST">
-        <div>
-            <label for="location">Location</label>
-            <input type="text" id="location" name="place[location]">
+    <div class="row">
+        <h1 class="text-center">New Place</h1>
+        <div class="col-6 offset-3">
+            <form action="/places" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="place[location]">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image URL</label>
+                    <input class="form-control" type="text" id="image" name="place[image]">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="place[description]"></textarea>
+                </div>
+                <button class="btn btn-success mb-3">Add Place</button>
+            </form>
+            
         </div>
-        <div>
-            <label for="description">Description</label>
-            <input type="text" id="description" name="place[description]">
-        </div>
-        <button>Add Place</button>
-        <a href="/places">Cancel</a>
-    </form>
+    </div>

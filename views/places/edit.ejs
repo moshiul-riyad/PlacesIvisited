@@ -2,7 +2,11 @@
 <div class="row">
     <h1 class="text-center">Update Place</h1>
     <div class="col-6 offset-3">
-        <form action="/places" method="POST">
+        <form action="/places/<%= place._id%>?_method=PUT" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="place[title]" value="<%= place.title  %>">
+            </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Location</label>
                 <input class="form-control" type="text" id="location" name="place[location]" value="<%= place.location  %>">

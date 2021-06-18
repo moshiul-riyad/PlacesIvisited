@@ -4,17 +4,22 @@
         <div class="card text-center mb-5">
             <img src="<%= place.image %>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title"><%= place.location %></h5>
+              <h5 class="card-title"><%= place.title %></h5>
               <p class="card-text"><%= place.description %></p>
             </div>
             <ul class="list-group list-group-flush">
+              <li class="list-group-item"><%= place.location %></li>
               <li class="list-group-item">An item</li>
               <li class="list-group-item text-muted">Created at ...</li>
               <li class="list-group-item text-muted">Updated at ...</li>
             </ul>
             <div class="card-body">
-              <a href="/places/<%= place._id %>/edit" class="btn btn-info">Edit</a>
-              <a href="/places" class="btn btn-danger">Delete</a>
+              <p><a href="/places/<%=place._id%>/edit" class="btn btn-outline-info mt-3">Edit</a></p>
+              <p>
+                <form action="/places/<%= place._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-outline-danger">Delete</button>
+                </form>
+              </p>
             </div>
           </div>
     </div>

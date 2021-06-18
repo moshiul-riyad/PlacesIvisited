@@ -1,14 +1,30 @@
 <% layout('layouts/boilerplate') %> 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@700&family=Bellota&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap" rel="stylesheet">
 <h1 class="text-center mb-4">All Places</h1>
+
+<style>
+
+    h1, h2 {
+        font-family: 'Baloo Tammudu 2', cursive;
+    }
+    h5, p {
+        font-family: 'Bellota', cursive;
+    }
+
+</style>
 
 <% for (let place of places)  { %>
     <div class="row text-center">
         <div class="col-6 offset-3">
             <div class="card mb-4" style="width: 40rem;">
-                <img src="<%= place.image %> " class="card-img-top hover-overlay ripple" data-mdb-ripple-color="light"" alt="...">
+                <img src="<%= place.image %> " class="card-img-top hover-overlay ripple mb-2" data-mdb-ripple-color="light"" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title"><%= place.location %> </h5>
-                    <p class="card-text"><%= place.description %> </p>
+                    <h2 class="card-title"><%= place.title %></h2>
+                    <h5 class="card-text"><%= place.location %></h5>
+                    <p class="card-text"><%= place.description %></p>
                     <a href="/places/<%= place._id %>" class="btn btn-info">View More</a>
                 </div>
             </div>

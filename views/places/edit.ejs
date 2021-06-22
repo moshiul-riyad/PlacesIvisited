@@ -2,26 +2,42 @@
 <div class="row">
     <h1 class="text-center">Update Place</h1>
     <div class="col-6 offset-3">
-        <form action="/places/<%= place._id%>?_method=PUT" method="POST">
+        <form action="/places/<%= place._id%>?_method=PUT" method="POST" novalidate class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="place[title]" value="<%= place.title  %>">
+                <input class="form-control" type="text" id="title" name="place[title]" value="<%= place.title %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Location</label>
-                <input class="form-control" type="text" id="location" name="place[location]" value="<%= place.location  %>">
+                <input class="form-control" type="text" id="location" name="place[location]" value="<%= place.location %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="image">Image URL</label>
-                <input class="form-control" type="text" id="image" name="place[image]" value="<%= place.image  %>">
+                <input class="form-control" type="text" id="image" name="place[image]" value="<%= place.image %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="place[description]"><%= place.description %></textarea>
+                <textarea class="form-control" type="text" id="description" name="place[description]" required><%= place.description %></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
-            <button class="btn btn-info mb-3">Update Place</button>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-outline-success mb-3">Update Place</button>
+            </div>
         </form>
-        <a href="/places/<%= place._id%>" class="btn btn-warning">Cancel Editing</a>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a href="/places/<%= place._id%>" class="btn btn-outline-dark">Cancel Editing</a>
+        </div>
         
     </div>
 </div>

@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
+const catchAsync = require('./utils/catchAsync');
 const Place = require('./models/place');
 
 mongoose.connect('mongodb://localhost:27017/places-i-visited', {
@@ -42,47 +43,49 @@ app.get('/', (req, res) => {
 // })
 
 // RESTFUL ROUTING
-app.get('/places', async (req, res) => {
+app.get('/places', catchAsync( async (req, res, next) => {
     const places = await Place.find({});
     res.render('places/index', { places });
-})
+}))
 
 app.get('/places/new', (req, res) => {
     res.render('places/new');
 })
 
-app.post('/places', async (req, res) => {
+app.post('/places', catchAsync( async (req, res, next) => {
     // res.send(req.body);
     const place = new Place(req.body.place);
     await place.save();
     res.redirect(`/places/${place._id}`)
-})
+}))
 
-app.get('/places/:id', async (req, res) => {
+app.get('/places/:id', catchAsync (async (req, res, next) => {
     const place = await Place.findById(req.params.id);
     res.render('places/show', { place });
-})
+}))
 
-app.get('/places/:id/edit', async (req, res) => {
+app.get('/places/:id/edit', catchAsync(async (req, res, next) => {
     const place = await Place.findById(req.params.id)
     res.render('places/edit', { place });
-})
+}))
 
 
-app.put('/places/:id', async (req, res) => {
+app.put('/places/:id', catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const place = await Place.findByIdAndUpdate(id, {...req.body.place });
     res.redirect(`/places/${place._id}`);
-})
+}))
 
 
-app.delete('/places/:id', async (req, res) => {
+app.delete('/places/:id', catchAsync(async (req, res, next) => {
     const { id } = req.params;
     await Place.findByIdAndDelete(id);
     res.redirect('/places');
+}))
 
+app.use((err, req, res, next) => {
+    res.send("Something Went Wrong!!!");
 })
-
 
 app.listen(3000, () => {
     console.log('Serving on port 3000')

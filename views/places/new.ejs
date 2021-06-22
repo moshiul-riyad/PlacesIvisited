@@ -2,25 +2,42 @@
     <div class="row">
         <h1 class="text-center">New Place</h1>
         <div class="col-6 offset-3">
-            <form action="/places" method="POST">
+            <form action="/places" method="POST" novalidate class="validated-form">
                 <div class="mb-3">
                     <label class="form-label" for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="place[title]">
+                    <input class="form-control" type="text" id="title" name="place[title]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="place[location]">
+                    <input class="form-control" type="text" id="location" name="place[location]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Image URL</label>
-                    <input class="form-control" type="text" id="image" name="place[image]">
+                    <input class="form-control" type="text" id="image" name="place[image]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description" name="place[description]"></textarea>
+                    <textarea class="form-control" type="text" id="description" name="place[description]" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
-                <button class="btn btn-success mb-3">Add Place</button>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-success mb-3">Add Place</button>
+                </div>
             </form>
             
         </div>
     </div>
+
+
+

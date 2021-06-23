@@ -3,8 +3,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
+const { placeSchema } = require('./schemas.js');
 const catchAsync = require('./utils/catchAsync');
+const ExpressError = require('./utils/ExpressError');
 const Place = require('./models/place');
+const { validate } = require('./models/place');
 
 mongoose.connect('mongodb://localhost:27017/places-i-visited', {
     useNewUrlParser: true,
@@ -29,7 +32,15 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, "public")));
 
 
-
+const validatePlace = (req, res, next) => {
+    const { error } = placeSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
+}
 
 
 app.get('/', (req, res) => {
@@ -52,8 +63,9 @@ app.get('/places/new', (req, res) => {
     res.render('places/new');
 })
 
-app.post('/places', catchAsync( async (req, res, next) => {
+app.post('/places', validatePlace, catchAsync( async (req, res, next) => {
     // res.send(req.body);
+    // if (!req.body.place) throw new ExpressError('Invalid Place Data', 400);
     const place = new Place(req.body.place);
     await place.save();
     res.redirect(`/places/${place._id}`)
@@ -70,7 +82,7 @@ app.get('/places/:id/edit', catchAsync(async (req, res, next) => {
 }))
 
 
-app.put('/places/:id', catchAsync(async (req, res, next) => {
+app.put('/places/:id', validatePlace, catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const place = await Place.findByIdAndUpdate(id, {...req.body.place });
     res.redirect(`/places/${place._id}`);
@@ -83,8 +95,15 @@ app.delete('/places/:id', catchAsync(async (req, res, next) => {
     res.redirect('/places');
 }))
 
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404));
+})
+
 app.use((err, req, res, next) => {
-    res.send("Something Went Wrong!!!");
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = 'Something Went Wrong!!!'
+    res.status(statusCode).render('error', { err })
+    // res.send("Something Went Wrong!!!");
 })
 
 app.listen(3000, () => {

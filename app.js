@@ -3,10 +3,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
-const { placeSchema } = require('./schemas.js');
+const { placeSchema, reviewSchema } = require('./schemas.js');
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 const Place = require('./models/place');
+const Review = require('./models/review');
 const { validate } = require('./models/place');
 
 mongoose.connect('mongodb://localhost:27017/places-i-visited', {
@@ -31,7 +32,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, "public")));
 
-
+// PLACE MIDDLEWARE
 const validatePlace = (req, res, next) => {
     const { error } = placeSchema.validate(req.body);
     if (error) {
@@ -42,7 +43,19 @@ const validatePlace = (req, res, next) => {
     }
 }
 
+// REVIEW MIDDLEWARE
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
+}
 
+
+// PLACES RESTFUL
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -72,7 +85,7 @@ app.post('/places', validatePlace, catchAsync( async (req, res, next) => {
 }))
 
 app.get('/places/:id', catchAsync (async (req, res, next) => {
-    const place = await Place.findById(req.params.id);
+    const place = await Place.findById(req.params.id).populate('reviews');
     res.render('places/show', { place });
 }))
 
@@ -95,6 +108,17 @@ app.delete('/places/:id', catchAsync(async (req, res, next) => {
     res.redirect('/places');
 }))
 
+// REVIEWS ROUTES
+app.post('/places/:id/reviews', validateReview, catchAsync(async(req, res) => {
+    const place = await Place.findById(req.params.id);
+    const review = new Review(req.body.review);
+    place.reviews.push(review);
+    await review.save();
+    await place.save();
+    res.redirect(`/places/${place._id}`);
+}))
+
+// ERRORS
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));
 })

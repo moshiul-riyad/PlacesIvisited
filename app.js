@@ -3,17 +3,23 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
-const { placeSchema, reviewSchema } = require('./schemas.js');
-const catchAsync = require('./utils/catchAsync');
+const session = require('express-session');
+const flash = require('connect-flash');
+// const { placeSchema, reviewSchema } = require('./schemas.js');
+// const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
-const Place = require('./models/place');
-const Review = require('./models/review');
+
+
 const { validate } = require('./models/place');
+
+const places = require('./routes/places');
+const reviews = require('./routes/reviews');
 
 mongoose.connect('mongodb://localhost:27017/places-i-visited', {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 });
 
 const db = mongoose.connection;
@@ -32,27 +38,28 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, "public")));
 
-// PLACE MIDDLEWARE
-const validatePlace = (req, res, next) => {
-    const { error } = placeSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
+const sessionConfig = {
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
+app.use(session(sessionConfig))
+app.use(flash())
 
-// REVIEW MIDDLEWARE
-const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
+
+
+app.use('/places', places);
+app.use('/places/:id/reviews', reviews);
 
 
 // PLACES RESTFUL
@@ -66,64 +73,7 @@ app.get('/', (req, res) => {
 //     res.send(plac);
 // })
 
-// RESTFUL ROUTING
-app.get('/places', catchAsync( async (req, res, next) => {
-    const places = await Place.find({});
-    res.render('places/index', { places });
-}))
 
-app.get('/places/new', (req, res) => {
-    res.render('places/new');
-})
-
-app.post('/places', validatePlace, catchAsync( async (req, res, next) => {
-    // res.send(req.body);
-    // if (!req.body.place) throw new ExpressError('Invalid Place Data', 400);
-    const place = new Place(req.body.place);
-    await place.save();
-    res.redirect(`/places/${place._id}`)
-}))
-
-app.get('/places/:id', catchAsync (async (req, res, next) => {
-    const place = await Place.findById(req.params.id).populate('reviews');
-    res.render('places/show', { place });
-}))
-
-app.get('/places/:id/edit', catchAsync(async (req, res, next) => {
-    const place = await Place.findById(req.params.id)
-    res.render('places/edit', { place });
-}))
-
-
-app.put('/places/:id', validatePlace, catchAsync(async (req, res, next) => {
-    const { id } = req.params;
-    const place = await Place.findByIdAndUpdate(id, {...req.body.place });
-    res.redirect(`/places/${place._id}`);
-}))
-
-
-app.delete('/places/:id', catchAsync(async (req, res, next) => {
-    const { id } = req.params;
-    await Place.findByIdAndDelete(id);
-    res.redirect('/places');
-}))
-
-// REVIEWS ROUTES
-app.post('/places/:id/reviews', validateReview, catchAsync(async(req, res) => {
-    const place = await Place.findById(req.params.id);
-    const review = new Review(req.body.review);
-    place.reviews.push(review);
-    await review.save();
-    await place.save();
-    res.redirect(`/places/${place._id}`);
-}))
-
-app.delete('/places/:id/reviews/:reviewId', catchAsync(async (req, res) => {
-    const { id, reviewId } = req.params;
-    await Place.findByIdAndUpdate(id, { $pull: { reviews: reviewId} });
-    await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/places/${id}`);
-}))
 
 // ERRORS
 app.all('*', (req, res, next) => {

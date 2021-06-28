@@ -20,10 +20,11 @@ const seedDB = async () => {
     for (let i = 0; i < 5; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const pla = new Place({
-            title: "Here comes title",
+            author: '60d9fafd4ea34e351cbc38da',
+            title: "Ruby Beach",
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius aspernatur natus quo dolor cumque iure quibusdam aliquam reprehenderit sit',
-            image: 'https://images.unsplash.com/photo-1585399000684-d2f72660f092?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80'
+            image: 'https://www.scenicusa.net/images/NV09RubyBeachPD.jpg'
         }) 
         await pla.save();
     }

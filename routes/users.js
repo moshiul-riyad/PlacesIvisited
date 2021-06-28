@@ -10,7 +10,7 @@ router.get('/register', (req, res) => {
     res.render('users/register');
 })
 
-router.post('/register', async (req, res) => {
+router.post('/register', catchAsync(async (req, res) => {
     try {
         const { email, username, password } = req.body;
         const user = new User({ email, username });
@@ -24,14 +24,14 @@ router.post('/register', async (req, res) => {
         req.flash('error', e.message);
         res.redirect('register');
     }
-})
+}));
 
 // LOGIN ROUTES
 router.get('/login', (req, res) => {
     res.render('users/login');
 })
 
-router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), async (req, res) => {
+router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
     req.flash('success', 'Welcome Back!');
     const redirectUrl = req.session.returnTo || '/places';
     delete req.session.returnTo;

@@ -1,0 +1,12 @@
+body{
+    background-color: #c0d6df;
+}
+
+.new-form, .edit-form, .form-label, .list-group-item {
+    font-family: 'Bellota', cursive;
+}
+
+.card, .list-group-item {
+    background-color: #d8e2dc;
+}
+

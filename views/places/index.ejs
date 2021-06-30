@@ -1,10 +1,11 @@
 <% layout('layouts/boilerplate') %> 
+<link rel="stylesheet" href="/stylesheets/places.css">
 
 
 <% for (let place of places)  { %>
     <div class="row text-center">
-        <div class="col-6 offset-3">
-            <div class="card mb-4" style="width: 40rem;">
+        <div class="col-sm-6 offset-sm-3">
+            <div class="card mb-5">
                 <img src="<%= place.image %> " class="card-img-top hover-overlay ripple mb-2" data-mdb-ripple-color="light"" alt="...">
                 <div class="card-body">
                     <h2 class="card-title"><%= place.title %></h2>

@@ -1,6 +1,7 @@
 <% layout('layouts/boilerplate') %> 
+<link rel="stylesheet" href="/stylesheets/users.css">
 
-<h1>Register</h1>
+<!-- <h1>Register</h1>
 <form action="/register" method="POST" class="validated-form" novalidate>
     <div class="mb-3">
         <label class="form-label" for="username">Username</label>
@@ -24,4 +25,39 @@
         </div>
     </div>
     <button class="btn btn-success">Register</button>
-</form>
+</form> -->
+
+<div class="container justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <!-- offset-md-3 col-xl-4 offset-xl-4 -->
+            <div class="card shadow">
+               <h1 class="text-center mt-3">Register</h1>
+                <form action="/register" method="POST" class="validated-form mx-5" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label" for="username">Username</label>
+                        <input class="form-control" type="text" id="username" name="username" required autofocus>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-control" type="email" id="email" name="email" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Password</label>
+                        <input class="form-control" type="password" id="password" name="password" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <button class="btn btn-success mb-3">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,13 @@
 <% layout('layouts/boilerplate') %> 
 <link rel="stylesheet" href="/stylesheets/stars.css">
+<link rel="stylesheet" href="/stylesheets/places.css">
 
 <div class="row">
     <div class="col-6">
         <div class="card text-center mb-5">
             <img src="<%= place.image %>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title"><%= place.title %></h5>
+              <h3 class="card-title"><%= place.title %></h3>
               <p class="card-text"><%= place.description %></p>
             </div>
             <ul class="list-group list-group-flush">

@@ -24,7 +24,16 @@ const seedDB = async () => {
             title: "Ruby Beach",
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius aspernatur natus quo dolor cumque iure quibusdam aliquam reprehenderit sit',
-            image: 'https://www.scenicusa.net/images/NV09RubyBeachPD.jpg'
+            images: [
+                {
+                  url: 'https://res.cloudinary.com/dizmicoat/image/upload/v1625148422/PlacesIVisited/gerfaojlkfprhkrigune.jpg',
+                  filename: 'PlacesIVisited/gerfaojlkfprhkrigune'
+                },
+                {
+                  url: 'https://res.cloudinary.com/dizmicoat/image/upload/v1625148422/PlacesIVisited/sdky3tnxyf1jfabr2vgn.jpg',
+                  filename: 'PlacesIVisited/sdky3tnxyf1jfabr2vgn'
+                }
+            ]    
         }) 
         await pla.save();
     }

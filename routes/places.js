@@ -21,18 +21,14 @@ router.get('/', catchAsync(places.index));
 
 router.get('/new', isLoggedIn, places.renderNewForm);
 
-// router.post('/', isLoggedIn, upload.single('image'), validatePlace, catchAsync(places.createPlace));
-router.post('/', upload.array('image'), (req, res) => {
-    console.log(req.body, req.files);
-    res.send('it worked');
-});
+router.post('/', isLoggedIn, upload.array('image'), validatePlace, catchAsync(places.createPlace));
 
 router.get('/:id', catchAsync (places.showPlace));
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(places.renderEditForm));
 
 
-router.put('/:id', isLoggedIn, isAuthor, validatePlace, catchAsync(places.updatePlace));
+router.put('/:id', isLoggedIn, isAuthor, upload.array('image'), validatePlace, catchAsync(places.updatePlace));
 
 
 router.delete('/:id', isLoggedIn, isAuthor, catchAsync(places.deletePlace));

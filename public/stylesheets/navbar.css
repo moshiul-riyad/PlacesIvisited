@@ -1,8 +1,8 @@
 .nav-link {
     font-weight: 600;
     border-bottom: 0.15rem solid transparent;
-    /* font-family: 'Calligraffitti', cursive; */
-    font-family: 'Baloo Tammudu 2', cursive;
+    font-family: 'Calligraffitti', cursive;
+    /* font-family: 'Baloo Tammudu 2', cursive; */
 }
 
 .nav-link:hover {

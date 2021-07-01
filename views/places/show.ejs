@@ -88,27 +88,31 @@
         </div> 
       <% } %> 
 
-    <h2 class="mt-2">All Reviews</h2>
-    <% for (let review of place.reviews) { %> 
-      <div class="card mb-3">
-        <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted"><strong><i><%= review.author.username %></i></strong></h6>
-          
-          <p class="starability-result" data-rating="<%= review.rating %>">
-            Rated: <%= review.rating %>  stars
-          </p>
-          
-          <p>Review: <%= review.body %></p>
+    
+      <% for (let review of place.reviews) { %> 
+      
+        <div class="card mb-3">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted"><strong><i><%= review.author.username %></i></strong></h6>
+            
+            <p class="starability-result" data-rating="<%= review.rating %>">
+              Rated: <%= review.rating %>  stars
+            </p>
+            
+            <p>Review: <%= review.body %></p>
 
-          <% if (currentUser && review.author.equals(currentUser._id)) { %> 
-            <form action="/places/<%=place._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                <button class="btn btn-outline-danger">Delete</button>
-            </form>
-          <% } %> 
-          
+            <% if (currentUser && review.author.equals(currentUser._id)) { %> 
+              <form action="/places/<%=place._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                  <button class="btn btn-outline-danger">Delete</button>
+              </form>
+            <% } %> 
+            
+          </div>
         </div>
-      </div>
       <% } %> 
+    
+
+
     </div>
 </div>
 

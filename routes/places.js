@@ -10,13 +10,22 @@ const Place = require('../models/place');
 
 const { isLoggedIn, isAuthor, validatePlace } = require('../middleware');
 
+const multer = require('multer');
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
+// const upload = multer({ dest: 'uploads/' });
+
 
 // RESTFUL ROUTING
 router.get('/', catchAsync(places.index));
 
 router.get('/new', isLoggedIn, places.renderNewForm);
 
-router.post('/', isLoggedIn, validatePlace, catchAsync(places.createPlace));
+// router.post('/', isLoggedIn, upload.single('image'), validatePlace, catchAsync(places.createPlace));
+router.post('/', upload.array('image'), (req, res) => {
+    console.log(req.body, req.files);
+    res.send('it worked');
+});
 
 router.get('/:id', catchAsync (places.showPlace));
 

@@ -3,7 +3,9 @@
 <link rel="stylesheet" href="/stylesheets/places.css">
 
 <div class="row">
-    <div class="col-6">
+     
+    <div class="col-sm-8 offset-sm-2">
+
       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
           <% place.images.forEach((img, i) => { %> 
@@ -23,6 +25,7 @@
           </button>
         <% } %>
       </div>
+
         <div class="card text-center mb-5">
             <div class="card-body">
               <h3 class="card-title"><%= place.title %></h3>
@@ -66,14 +69,15 @@
                   </div>
                 </div>
               <% } %> 
+              <!-- currentUser -->
 
             </div>
         </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-sm-6 offset-sm-2 offset-sm-3 offset-md-3">
       <% if (currentUser)  { %> 
-        <div class="mb-5">
+        <div class="mb-5 card p-3">
 
           <h2 class="mt-2">Leave a Review</h2>
           <form action="/places/<%= place._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
@@ -95,8 +99,8 @@
               <label for="first-rate5" title="Amazing">5 stars</label>
             </fieldset>
             <div class="mb-3">
-              <label class="form-label" for="body">Review</label>
-              <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+              <label class="form-label" for="body">Write Review</label>
+              <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
               <div class="valid-feedback">
                 Looks good!
               </div>
@@ -106,33 +110,44 @@
         </div> 
       <% } %> 
 
-    
-      <% for (let review of place.reviews) { %> 
-      
-        <div class="card mb-3">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted"><strong><i><%= review.author.username %></i></strong></h6>
-            
-            <p class="starability-result" data-rating="<%= review.rating %>">
-              Rated: <%= review.rating %>  stars
-            </p>
-            
-            <p>Review: <%= review.body %></p>
-
-            <% if (currentUser && review.author.equals(currentUser._id)) { %> 
-              <form action="/places/<%=place._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                  <button class="btn btn-outline-danger">Delete</button>
-              </form>
-            <% } %> 
-            
-          </div>
-        </div>
-      <% } %> 
-    
-
 
     </div>
 </div>
+
+</div>
+
+<!-- ALL REVIEWS -->
+<div class="row">
+  <div class="col-sm-8 offset-sm-2">
+    <div class="card mb-5 p-3">
+    <% if (place.reviews.length >= 1) { %> 
+    <h2 class="text-center">All Reviews</h2>
+    <% for (let review of place.reviews) { %> 
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted"><strong><i><%= review.author.username %></i></strong></h6>
+          
+          <p class="starability-result" data-rating="<%= review.rating %>">
+            Rated: <%= review.rating %>  stars
+          </p>
+          
+          <p>Review: <%= review.body %></p>
+
+          <% if (currentUser && review.author.equals(currentUser._id)) { %> 
+            <form action="/places/<%=place._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-outline-danger">Delete</button>
+            </form>
+          <% } %> 
+        </div>
+        
+      </div>
+    <% } %>
+    <% } %> 
+    </div>
+  </div>
+</div> 
+
 
 
 

@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&family=Bellota&display=swap');
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://images.unsplash.com/photo-1588426651288-7e828a77f413?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+main {
+    color: rgb(226, 226, 226);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 60vw;
+    min-height: 60vh;
+}
+
+.viewbtn {
+    background-color: rgb(226, 226, 226);
+    color: black;
+    opacity: 0.5;
+    margin-top: 5px;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 8px;
+    text-decoration: none;
+    align-items: center;
+    color: black;
+}
+
+.viewbtn:hover {
+    color: rgb(226, 226, 226);
+    background-color: black;
+    transition: all 0.3s;
+}
+
+.container {
+    width: 80%;
+    margin: 2rem auto;
+}
+
+p {
+    margin: 1rem 0;
+}
+
+p.lead {
+    font-family: 'Bellota', cursive;
+    font-size: 1.2rem;
+}
+
+h1{
+    font-family: 'Baloo Tammudu 2', cursive;
+    font-size: 3rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: black;
+    
+}
+
+.logo{
+    color: rgb(226, 226, 226);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    list-style: none;
+}
+
+.nav-links a {
+    color: rgb(226, 226, 226);
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+    
+
+}
+
+.burger {
+    display: none;
+}
+
+.burger div{
+    width: 25px;
+    height: 3px;
+    background-color:rgb(226, 226, 226);
+    margin: 5px;
+
+}
+
+@media screen and (max-width:1024px) {
+   .nav-links {
+       width: 60%;
+   }
+}
+
+@media screen and (max-width:768px) {
+    body {
+        overflow-x: hidden;
+    }
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 8vh;
+        background-color: black; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    .burger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+    
+}
+
+.nav-active {
+    transform: translateX(0%);
+}
+
+
+@keyframes navLinkFade {
+    from{
+        opacity: 0;
+        transform: translateX(50px);
+
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px,6px);
+}
+
+.toggle .line2 {
+    opacity: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px,-6px);
+}

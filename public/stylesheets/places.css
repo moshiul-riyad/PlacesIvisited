@@ -1,5 +1,5 @@
 body{
-    background-color: #c0d6df;
+    background-color: aliceblue;
 }
 
 .new-form, .edit-form, .form-label, .list-group-item {
@@ -7,6 +7,7 @@ body{
 }
 
 .card, .list-group-item {
-    background-color: #d8e2dc;
+    background-color: #bfd7ea;
 }
 
+/* #d8e2dc; */

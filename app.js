@@ -10,6 +10,7 @@ const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash');
 
+
 const ExpressError = require('./utils/ExpressError');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -82,7 +83,7 @@ app.use('/', userRoutes);
 
 // PLACES RESTFUL
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('homep')
 })
 
 // app.get('/makeplace', async (req, res) => {

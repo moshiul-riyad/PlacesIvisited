@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Place = require('../models/place');
 
 module.exports.renderRegister = (req, res) => {
     res.render('users/register');
@@ -6,8 +7,8 @@ module.exports.renderRegister = (req, res) => {
 
 module.exports.register = async (req, res) => {
     try {
-        const { email, username, password } = req.body;
-        const user = new User({ email, username });
+        const { email, username, password, firstName, lastName, avatar } = req.body;
+        const user = new User({ email, username, firstName, lastName, avatar });
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, err => {
             if (err) return next (err);

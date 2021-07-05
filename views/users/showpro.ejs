@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate') %> 
+
+<h1>User Profile</h1>
+<div class="row">
+  <div class="col-sm-9 col-md-8 offset-1 offset-md-2 offset-lg-4 text-center">
+    <div class="card m-5" style="width: 18rem;">
+      <ul class="list-group list-group-flush">
+        <!-- <h5 class="card-title"><%= user.firstName + ' ' + user.lastName %></h5> -->
+        <h3 class="card-title"><%= user.username %></h3>
+        <li class="list-group-item"><%= user.email %></li>
+        <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="">
+        <!-- <li class="list-group-item">A third item</li> -->
+      </ul>
+  </div>
+  </div>
+  <div class="col-md-8">
+    <% for (let place of places) { %>
+      <a href="/places/<%=place._id%>"><%= place.title %></a>
+    <% } %> 
+  </div>
+</div>
+
+
+<!-- <% places.forEach(function(place) { %> 
+  <div class="card mb-3">
+    <img src="<%= place.images[0].url %>" class="card-img-top" alt="">
+    <div class="card-body">
+      <h5 class="card-title"><%= place.title %></h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+<% }) %>   -->

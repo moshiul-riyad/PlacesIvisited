@@ -19,6 +19,7 @@
     "express-session": "^1.17.2",
     "exprss": "0.0.1-security",
     "joi": "^17.4.0",
+    "locus": "^2.0.4",
     "method-override": "^3.0.0",
     "mongoose": "^5.12.13",
     "multer": "^1.4.2",

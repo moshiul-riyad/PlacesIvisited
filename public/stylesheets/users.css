@@ -7,7 +7,8 @@ body{
 }
 
 .shadow{
-    background-color: #8ecae6;
+    background-color: black;
     font-family: 'Bellota', cursive;
-    opacity: 0.8;
+    opacity: 0.7;
+    color: rgb(226, 226, 226);
 }

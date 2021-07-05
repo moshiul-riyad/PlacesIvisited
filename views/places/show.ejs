@@ -37,8 +37,8 @@
               <!-- <li class="list-group-item">Created by <%= place.author.username %></li> -->
             </ul>
             <div class="card-footer text-muted">
-              Created by <strong><i><%= place.author.username %></i></strong> on <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date()) %> 
-              
+              Created by <a href="/users/<%= place.author.id %> "><%= place.author.username %></a> on 07/04/2021
+              <!-- <strong><i><%= place.author.username %></i></strong> -->
             </div>
             <div class="card-body d-inline">
               <!--  -->

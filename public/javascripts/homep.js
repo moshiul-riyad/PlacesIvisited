@@ -2,12 +2,19 @@ const navSlide = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li');
-    const viewBtn = document.querySelector('.viewbtn');
+    const main = document.querySelector('main');
+
     
     burger.addEventListener('click', () => {
         // toggle nav
         nav.classList.toggle('nav-active');
-        nav.classList.toggle('btn-active');
+        
+        //show-hide button
+    //     if (main.style.display === 'none'){
+    //         main.style.display = 'block';
+    //     } else {
+    //         main.style.display = 'none';  
+    // }
 
 
         // animate links

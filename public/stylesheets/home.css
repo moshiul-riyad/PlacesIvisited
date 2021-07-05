@@ -9,10 +9,6 @@ body {
     background-repeat: no-repeat;
 }
 
-.cover-container {
-    max-width: 60vw;
-}
-
 h1, p.lead, .nav-link {
     color: #f1faee;
 }

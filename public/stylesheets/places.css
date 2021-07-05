@@ -1,7 +1,7 @@
 body{
-    background-color: aliceblue;
+    background-color: rgb(226, 226, 226);
 }
-
+/* #f8edeb; */
 .new-form, .edit-form, .form-label, .list-group-item {
     font-family: 'Bellota', cursive;
 }

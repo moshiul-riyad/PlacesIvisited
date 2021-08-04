@@ -17,7 +17,7 @@ module.exports.createPlace = async (req, res, next) => {
     place.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     place.author = req.user._id;
     await place.save();
-    console.log(place);
+    // console.log(place);
     req.flash('success', 'Successfully made a new Place!');
     res.redirect(`/places/${place._id}`)
 }

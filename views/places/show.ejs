@@ -38,10 +38,10 @@
             </ul>
             <div class="card-footer text-muted">
               Created by <a href="/users/<%= place.author.id %> "><%= place.author.username %></a> on 07/04/2021
-              <!-- <strong><i><%= place.author.username %></i></strong> -->
+              
             </div>
             <div class="card-body d-inline">
-              <!--  -->
+              
               <% if (currentUser && place.author.equals(currentUser._id)) { %> 
                 <a href="/places/<%=place._id%>/edit" class="btn btn-outline-primary">Edit</a>
 
@@ -71,8 +71,7 @@
                   </div>
                 </div>
               <% } %> 
-              <!-- currentUser -->
-
+        
             </div>
         </div>
     </div>
@@ -83,10 +82,6 @@
 
           <h2 class="mt-2">Leave a Review</h2>
           <form action="/places/<%= place._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
-            <!-- <div class="mb-3">
-              <label class="form-label" for="rating">Rating</label>
-              <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
-            </div> -->
             <fieldset class="starability-growRotate ml-5">
               <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
               <input type="radio" id="first-rate1" name="review[rating]" value="1" />
@@ -111,18 +106,15 @@
           </form> 
         </div> 
       <% } %> 
-
-
     </div>
 </div>
-
 </div>
 
 <!-- ALL REVIEWS -->
 <div class="row">
   <div class="col-sm-8 offset-sm-2">
-    <div class="card mb-5 p-3">
     <% if (place.reviews.length >= 1) { %> 
+    <div class="card mb-5 p-3">
     <h2 class="text-center">All Reviews</h2>
     <% for (let review of place.reviews) { %> 
 

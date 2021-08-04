@@ -9,49 +9,58 @@
             <div class="card shadow">
                <h1 class="text-center mt-3">Register</h1>
                 <form action="/register" method="POST" class="validated-form mx-5" novalidate>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label class="form-label" for="username">Username</label>
                         <input class="form-control" type="text" id="username" name="username" placeholder="johnd" required autofocus>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label class="form-label" for="firstName">First Name</label>
                         <input class="form-control" type="text" id="firstName" name="firstName" placeholder="John" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label class="form-label" for="lastName">Last Name</label>
                         <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Doe" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label class="form-label" for="email">Email</label>
                         <input class="form-control" type="email" id="email" name="email" placeholder="john.doe@gmail.com" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
-                    <div class="mb-3">
+
+                    <div class="mb-2">
+                        <label class="form-label" for="avatar">Image/Avatar URL</label>
+                        <input class="form-control" type="text" id="avatar" name="avatar">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2">
                         <label class="form-label" for="password">Password</label>
                         <input class="form-control" type="password" id="password" name="password" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-5">
                         <label class="form-label" for="confpass">Confirm Password</label>
                         <input class="form-control" type="password" id="confpass" name="confpass" onblur="confirmPass()" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
-                    <button class="btn btn-success mb-3">Register</button>
+                    <button class="btn btn-success mb-5 w-100">Register</button>
                 </form>
             </div>
         </div>

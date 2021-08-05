@@ -3,29 +3,35 @@
 <style>
   li {
     font-family: 'Bellota', cursive;
+    list-style-type: none;
   }
 </style>
 
 <h1>User Profile</h1>
-<div class="row">
-  <div class="col-sm-9 col-md-8 offset-1 offset-md-2 offset-lg-4 text-center">
-    <div class="card m-5" style="width: 18rem;">
+<div class="row text-center">
+  <div class="col-sm-8 offset-sm-2 offset-md-3 offset-lg-5 text-center">
+    <div class="card m-4" style="width: 18rem;">
       <ul class="list-group list-group-flush">
-        <h3 class="card-title"><%= user.firstName + ' ' +  user.lastName %></h3>
+        <h3 class="card-title"><%= user.firstName[0].toUpperCase() + user.firstName.substring(1)  + ' ' +  user.lastName[0].toUpperCase() + user.lastName.substring(1) %></h3>
         <li class="list-group-item"><%= user.email %></li>
         <img src=<%= user.avatar %>  alt="">
       </ul>
   </div>
   </div>
   <div class="col-md-3">
-    <h3>Places <%= user.firstName %> Visited</h3>
+    <h3>Places <%= user.firstName[0].toUpperCase() + user.firstName.substring(1) %> Visited</h3>
     
+
     <ul>
       <% places.forEach(function(place) { %> 
         <!-- <li><a href="/places/<%= place.id %>"><%= place.title %></a></li> -->
-        <div class="card mb-2">
-          <div class="card-body">
-            <li class="m-3"><a  href="/places/<%= place.id %>"><%= place.title %></a></li>
+        <div class="row text-center">
+          <div class="col">
+            <div class="card mb-2">
+              <div class="card-body">
+                <li class=""><a  href="/places/<%= place.id %>"><%= place.title %></a>- <%= place.location.split(" ").pop() %></li>
+              </div>
+            </div>
           </div>
         </div>
       <% }) %>

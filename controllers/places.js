@@ -10,6 +10,13 @@ module.exports.renderNewForm = (req, res) => {
     res.render('places/new');
 }
 
+// time
+// db.places.find().forEach(function (doc){ d = doc._id.getTimestamp(); print(d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()) })
+// > db.places.findOne()._id
+// ObjectId("xxxxxxxxxxxxxxxxxx")
+// > db.places.findOne()._id.getTimestamp()
+// ISODate("2020-12-23T02:57:31Z")
+
 module.exports.createPlace = async (req, res, next) => {
     // res.send(req.body);
     // if (!req.body.place) throw new ExpressError('Invalid Place Data', 400);

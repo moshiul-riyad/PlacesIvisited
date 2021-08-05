@@ -15,6 +15,7 @@ const PlaceSchema = new Schema({
     title: String,
     location: String,
     description: String,
+    // createdAt: { type: Date, default: Date.now },
     images: [ImageSchema],
     author:  {
             type: Schema.Types.ObjectId,

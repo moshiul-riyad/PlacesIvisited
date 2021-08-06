@@ -3,59 +3,61 @@
 
 <div class="row">
     <h1 class="text-center">Update Place</h1>
-    <div class="col-6 offset-3">
-        <form action="/places/<%= place._id%>?_method=PUT" method="POST" novalidate class="validated-form edit-form" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="place[title]" value="<%= place.title %>" required>
-                <div class="valid-feedback">
-                    Looks good!
+    <div class="col-md-6 offset-md-3">
+        <div class="card shadow">
+            <form action="/places/<%= place._id%>?_method=PUT" method="POST" novalidate class="validated-form edit-form" enctype="multipart/form-data">
+                <div class="mb-3 p-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="place[title]" value="<%= place.title %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="location">Location</label>
-                <input class="form-control" type="text" id="location" name="place[location]" value="<%= place.location %>" required>
-                <div class="valid-feedback">
-                    Looks good!
+                <div class="mb-3 p-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="place[location]" value="<%= place.location %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
-            </div>
-            
-            <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="place[description]" required><%= place.description %></textarea>
-                <div class="valid-feedback">
-                    Looks good!
+                
+                <div class="mb-3 p-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="place[description]" required><%= place.description %></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
-            </div>
-            <!-- <div class="mb-3">
-                <label class="form-label" for="image">Add Images</label>
-                <input type="file" name="image" id="image" multiple>
-            </div> -->
-            <div class="input-group mb-5">
-                <input type="file" class="form-control" id="image" name="image" multiple>
-                <label class="input-group-text" for="image">Add More Images</label>
-            </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="image">Add Images</label>
+                    <input type="file" name="image" id="image" multiple>
+                </div> -->
+                <div class="input-group mb-5 p-3">
+                    <input type="file" class="form-control" id="image" name="image" multiple>
+                    <label class="input-group-text" for="image">Add More Images</label>
+                </div>
 
-            <div class="mb-3 text-center">
-                <% place.images.forEach(function(img, i) {  %> 
-                   <div class="row">
-                       <div class="col">
-                            <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="">
-                            <div class="form-check-inline">
-                                <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
-                            </div>
-                            <label for="image-<%=i%>">Delete Image?</label>
-                       </div>
+                <div class="mb-3 text-center p-3">
+                    <% place.images.forEach(function(img, i) {  %> 
+                    <div class="row">
+                        <div class="col">
+                                <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="">
+                                <div class="form-check-inline">
+                                    <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                                </div>
+                                <label for="image-<%=i%>">Delete Image?</label>
+                        </div>
 
-                   </div>
-                <% }) %> 
+                    </div>
+                    <% }) %> 
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-outline-success mb-3">Update Place</button>
+                </div>
+            </form>
+            <div class="d-grid gap-2 col-6 mx-auto mb-5">
+                <a href="/places/<%= place._id%>" class="btn btn-outline-dark">Cancel Editing</a>
             </div>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-outline-success mb-3">Update Place</button>
-            </div>
-        </form>
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <a href="/places/<%= place._id%>" class="btn btn-outline-dark">Cancel Editing</a>
         </div>
         
     </div>

@@ -1,5 +1,8 @@
 body{
-    background-color: rgb(226, 226, 226);
+    /* background-color: rgb(226, 226, 226); */
+    /* background-color: #f4f3ee; */
+    background-color: #5c677d;
+    color: #FFFFFF8C;
 }
 /* #f8edeb; */
 .new-form, .edit-form, .form-label, .list-group-item {
@@ -7,7 +10,9 @@ body{
 }
 
 .card, .list-group-item {
-    background-color: #bfd7ea;
+    /* background-color: #bfd7ea; */
+    background-color: #0e1941;
+    color: #FFFFFF8C;
 }
 
 /* #d8e2dc; */

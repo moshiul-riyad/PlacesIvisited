@@ -24,20 +24,26 @@
 
         <ul class="nav-links">
             <li>
-                <a href="/">Home</a>
+                <a class="nav-link" href="/">Home</a>
             </li>
             <li>
-                <a href="/places">All Places</a>
+                <a class="nav-link" href="/places">All Places</a>
             </li>
             <li>
-                <a href="/places/new">Make New</a>
+                <a class="nav-link" href="/places/new">Make New</a>
             </li>
-            <li>
-                <a href="/register">Register</a>
-            </li>
-            <li>
-                <a href="/login">Login</a>
-            </li>
+            <% if (!currentUser) { %> 
+                <li>
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            <% } else { %> 
+                <li>
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            <% } %>
         </ul>
         <div class="burger">
             <div class="line1"></div>

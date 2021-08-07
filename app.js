@@ -16,6 +16,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
+
 
 const { validate } = require('./models/place');
 
@@ -43,22 +46,26 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 
 const sessionConfig = {
+    name: 'session',
     secret: 'secret',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
 
 app.use(session(sessionConfig))
-app.use(flash())
+app.use(flash());
+app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, "public")));
+// app.use(mongoSanitize());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -85,12 +92,6 @@ app.use('/', userRoutes);
 app.get('/', (req, res) => {
     res.render('homep')
 })
-
-// app.get('/makeplace', async (req, res) => {
-//     const plac = new Place({ location: 'Dallas, Texas', description: 'blah blah!'});
-//     await plac.save();
-//     res.send(plac);
-// })
 
 
 // ERRORS

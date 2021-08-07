@@ -1,10 +1,11 @@
 {
-  "name": "Places_I_Have_Been",
+  "name": "placesivisited",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "dependencies": {
     "cloudinary": "^1.26.1",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "ejs-mate": "^3.0.0",

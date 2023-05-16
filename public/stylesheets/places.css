@@ -1,18 +1,24 @@
 body{
-    /* background-color: rgb(226, 226, 226); */
-    /* background-color: #f4f3ee; */
-    background-color: #5c677d;
+    /* background-color: #FBE0C3; */
     color: #FFFFFF8C;
 }
-/* #f8edeb; */
+
 .new-form, .edit-form, .form-label, .list-group-item {
     font-family: 'Bellota', cursive;
 }
 
 .card, .list-group-item {
-    /* background-color: #bfd7ea; */
-    background-color: #0e1941;
-    color: #FFFFFF8C;
+    background-color: #C3CBD6;
+    color: #344648;
 }
 
-/* #d8e2dc; */
+.btn {
+    background-color: whitesmoke;
+    font-family: 'Calligraffitti', cursive;
+}
+
+.btn:hover{
+    color: whitesmoke;
+    background-color: #344648;
+    /* background-color: ; */
+}

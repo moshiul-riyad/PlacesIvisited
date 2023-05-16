@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 nav {
-    background-color: #0e1941;
+    background-color: #C3CBD6;
 }
 
+a.nav-link{
+    color: #344648;
+}
 .nav-link {
     font-weight: 600;
     border-bottom: 0.15rem solid transparent;
-    /* font-family: 'Calligraffitti', cursive; */
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Calligraffitti', cursive;
+    /* font-family: 'Montserrat', sans-serif; */
     letter-spacing: 1px;
 }
 
 .nav-link:hover {
-   
-    /* border-bottom-color: turquoise; */
-    border-bottom-color: #0dcaf0;
+    border-bottom-color: white;
     transition: transform 0.3s ease-in;
     
 }
